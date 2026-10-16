@@ -25,13 +25,14 @@ npm run start    # servir build
 - `app/login`: portão de acesso (cookie httpOnly + `middleware.ts`).
 - `app/(portal)`: área autenticada com sidebar:
   - `/`: visão geral + **roteiro de 6 passos** + biblioteca + grupos G1–G10.
-  - `/funcionario`: manual do funcionário, com **Exportar PDF** (print-to-PDF nativo, estilos em `@media print`).
+  - `/funcionario`: manual do funcionário, com **Baixar PDF** (`/funcionario/manual.pdf`, gerado no build com `@react-pdf/renderer`).
   - `/gestor`: manual do gestor (perfis Clínica e Entidade).
   - `/comunicacao`: modelo de convite (copiar para clipboard).
   - `/planilha`: guia de importação + download do modelo XLSX.
   - `/marketing`: kit de marketing (apresentações, pitch e panfleto em PPTX).
   - `/suporte`: canais de atendimento + FAQ.
 - `lib/content.ts`: fonte única de conteúdo (nav, roteiro, grupos, suporte).
+- `lib/manual-funcionario.ts`: conteúdo do manual do funcionário, fonte única da página e do PDF (`lib/pdf/`).
 - `lib/marketing.ts`: catálogo do kit de marketing; capas (1º slide real) em `assets/marketing/`.
 - `public/`: `logo-qwork.png`, `modelo-planilha-funcionarios.xlsx` e `marketing/*.pptx` (atrás do login).
 
