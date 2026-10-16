@@ -94,12 +94,12 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop rail */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[268px] flex-col border-r border-line bg-ink-2/70 px-5 py-7 backdrop-blur-xl lg:flex">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[268px] flex-col border-r border-line bg-ink-2/70 px-5 py-7 backdrop-blur-xl lg:flex print:!hidden">
         <NavList />
       </aside>
 
       {/* Mobile top bar */}
-      <div className="fixed inset-x-0 top-0 z-30 flex items-center justify-between border-b border-line bg-ink-2/80 px-4 py-3 backdrop-blur-xl lg:hidden">
+      <div className="fixed inset-x-0 top-0 z-30 flex items-center justify-between border-b border-line bg-ink-2/80 px-4 py-3 backdrop-blur-xl lg:hidden print:hidden">
         <Link href="/" className="text-[1.2rem]">
           <Logo />
         </Link>

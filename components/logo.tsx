@@ -36,11 +36,12 @@ function QMark() {
       <circle cx="19" cy="20" r="13" fill="none" stroke="var(--color-lime)" strokeWidth="6.5" />
       {/* Q tail */}
       <path d="M26 28 L33 35" stroke="var(--color-lime)" strokeWidth="6.5" strokeLinecap="round" />
-      {/* check mark, inverted to white so it reads on the dark theme */}
+      {/* check mark, inverted to white so it reads on the dark theme
+          (back to brand charcoal on paper, see print styles) */}
       <path
         d="M12 20.5 l4.5 4.5 L28 12.5"
         fill="none"
-        stroke="#f4f6f7"
+        stroke="var(--logo-check, #f4f6f7)"
         strokeWidth="4.2"
         strokeLinecap="round"
         strokeLinejoin="round"

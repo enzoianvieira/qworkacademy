@@ -10,7 +10,8 @@ export type IconName =
   | "mail"
   | "sheet"
   | "lifebuoy"
-  | "shield";
+  | "shield"
+  | "megaphone";
 
 export interface NavItem {
   slug: string;
@@ -66,6 +67,15 @@ export const NAV: NavItem[] = [
     short: "Planilha",
     description: "Como preencher e importar a base de funcionários via XLSX.",
     icon: "sheet",
+    group: "recursos",
+  },
+  {
+    slug: "marketing",
+    href: "/marketing",
+    title: "Kit de Marketing",
+    short: "Marketing",
+    description: "Apresentações, pitch e panfleto oficiais da QWork prontos para baixar.",
+    icon: "megaphone",
     group: "recursos",
   },
   {

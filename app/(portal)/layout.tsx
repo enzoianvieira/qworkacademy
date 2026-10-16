@@ -8,8 +8,8 @@ export default function PortalLayout({
   return (
     <div className="relative z-10">
       <Sidebar />
-      <div className="lg:pl-[268px]">
-        <main className="mx-auto w-full max-w-3xl px-6 pb-28 pt-24 sm:px-10 lg:pt-16">
+      <div className="lg:pl-[268px] print:!pl-0">
+        <main className="mx-auto w-full max-w-3xl px-6 pb-28 pt-24 sm:px-10 lg:pt-16 print:max-w-none print:!p-0">
           {children}
         </main>
       </div>

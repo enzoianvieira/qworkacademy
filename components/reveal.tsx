@@ -18,6 +18,7 @@ export function Reveal({
 }) {
   return (
     <motion.div
+      data-reveal
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -40,6 +41,7 @@ export function Stagger({
 }) {
   return (
     <motion.div
+      data-reveal
       className={className}
       initial="hidden"
       whileInView="show"
@@ -63,6 +65,7 @@ export function StaggerItem({
 }) {
   return (
     <motion.div
+      data-reveal
       className={className}
       variants={{
         hidden: { opacity: 0, y: 14 },

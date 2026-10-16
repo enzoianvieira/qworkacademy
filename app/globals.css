@@ -111,6 +111,76 @@
   }
 }
 
+/* ============================================================
+   Print / "Exportar PDF"
+   Paper is light-first: the same tokens are remapped to an
+   ink-on-white palette, so every component prints without
+   per-component overrides. Accent colours are darkened to keep
+   WCAG AA contrast on white.
+   ============================================================ */
+@page {
+  size: A4;
+  margin: 16mm 15mm 18mm;
+
+  /* Margin boxes don't reliably resolve custom properties: literals only. */
+  @bottom-left {
+    content: "QWork Academy";
+    font: 500 7.5pt ui-sans-serif, system-ui, sans-serif;
+    color: #6b7280;
+  }
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font: 500 7.5pt ui-sans-serif, system-ui, sans-serif;
+    color: #6b7280;
+  }
+}
+
+@media print {
+  :root {
+    --color-ink: #ffffff;
+    --color-ink-2: #f7f8f9;
+    --color-surface: #f3f4f6;
+    --color-surface-2: #e9ebee;
+    --color-line: rgba(10, 11, 12, 0.12);
+    --color-line-strong: rgba(10, 11, 12, 0.2);
+
+    --color-fg: #0b0c0e;
+    --color-fg-muted: #374151;
+    --color-fg-faint: #6b7280;
+
+    --color-lime: #4d7a0f;
+    --color-lime-bright: #4d7a0f;
+
+    --color-risk-good: #15803d;
+    --color-risk-watch: #a16207;
+    --color-risk-alert: #b91c1c;
+
+    --logo-check: var(--color-charcoal);
+  }
+
+  html {
+    font-size: 10.5pt;
+    scroll-behavior: auto;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body::before {
+    display: none;
+  }
+
+  /* Scroll-triggered reveals never fire on paper: force final state,
+     otherwise sections below the fold print blank. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
 /* Refined scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }

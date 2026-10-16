@@ -72,6 +72,15 @@ export function Shield(p: P) {
   );
 }
 
+export function Megaphone(p: P) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1Z" />
+      <path d="M16.5 9a4 4 0 0 1 0 6M7 15l1.2 4.2a1 1 0 0 0 1 .8h.8" />
+    </svg>
+  );
+}
+
 export const ICONS: Record<IconName, (p: P) => React.ReactElement> = {
   compass: Compass,
   user: User,
@@ -80,6 +89,7 @@ export const ICONS: Record<IconName, (p: P) => React.ReactElement> = {
   sheet: Sheet,
   lifebuoy: Lifebuoy,
   shield: Shield,
+  megaphone: Megaphone,
 };
 
 export function Icon({ name, ...p }: { name: IconName } & P) {
@@ -106,6 +116,14 @@ export function Download(p: P) {
   return (
     <svg {...base} {...p}>
       <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
+    </svg>
+  );
+}
+export function FileDown(p: P) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5M12 11v6m0 0 2.5-2.5M12 17l-2.5-2.5" />
     </svg>
   );
 }

@@ -8,14 +8,16 @@ export function PageHero({
   title,
   lead,
   audience,
+  actions,
 }: {
   kicker: string;
   title: string;
   lead: string;
   audience?: string;
+  actions?: ReactNode;
 }) {
   return (
-    <header className="relative border-b border-line pb-12 pt-2">
+    <header className="relative border-b border-line pb-12 pt-2 print:pb-8">
       <Reveal>
         <div className="flex items-center gap-3">
           <span className="kicker">{kicker}</span>
@@ -27,7 +29,7 @@ export function PageHero({
         </div>
       </Reveal>
       <Reveal delay={0.06}>
-        <h1 className="mt-5 max-w-3xl text-balance text-4xl font-semibold tracking-[-0.025em] text-fg sm:text-5xl">
+        <h1 className="mt-5 max-w-3xl text-balance text-4xl font-semibold tracking-[-0.025em] text-fg sm:text-5xl print:text-[26pt]">
           {title}
         </h1>
       </Reveal>
@@ -36,6 +38,11 @@ export function PageHero({
           {lead}
         </p>
       </Reveal>
+      {actions && (
+        <Reveal delay={0.18}>
+          <div className="mt-8 print:hidden">{actions}</div>
+        </Reveal>
+      )}
     </header>
   );
 }
@@ -53,10 +60,11 @@ export function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-28 border-b border-line py-14 last:border-b-0">
-      <Reveal>
+    <section id={id} className="scroll-mt-28 border-b border-line py-14 last:border-b-0 print:py-8">
+      {/* Eyebrow + title travel together and never end a printed page. */}
+      <Reveal className="break-inside-avoid break-after-avoid">
         {eyebrow && <span className="kicker">{eyebrow}</span>}
-        <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-fg sm:text-3xl">
+        <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-fg sm:text-3xl print:text-[17pt]">
           {title}
         </h2>
       </Reveal>
@@ -91,7 +99,7 @@ export function Steps({ items }: { items: { title: string; body?: ReactNode }[] 
   return (
     <ol className="relative ml-3 space-y-7 border-l border-line pl-8">
       {items.map((it, i) => (
-        <li key={i} className="relative">
+        <li key={i} className="relative break-inside-avoid">
           <span className="absolute -left-[2.45rem] flex h-7 w-7 items-center justify-center rounded-full border border-line-strong bg-surface-2 text-[0.78rem] font-semibold text-lime">
             {i + 1}
           </span>
@@ -108,7 +116,7 @@ export function CheckList({ items }: { items: ReactNode[] }) {
   return (
     <ul className="space-y-3">
       {items.map((it, i) => (
-        <li key={i} className="flex gap-3 text-[0.97rem] leading-relaxed text-fg-muted">
+        <li key={i} className="flex break-inside-avoid gap-3 text-[0.97rem] leading-relaxed text-fg-muted">
           <Check className="mt-0.5 h-5 w-5 shrink-0 text-lime" />
           <span>{it}</span>
         </li>
@@ -136,7 +144,7 @@ export function Callout({
   const s = calloutStyles[variant];
   return (
     <div
-      className="rounded-xl border border-line bg-surface/50 p-5 pl-6"
+      className="break-inside-avoid rounded-xl border border-line bg-surface/50 p-5 pl-6"
       style={{ borderLeft: `2px solid ${s.bar}` }}
     >
       <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em]" style={{ color: s.bar }}>
@@ -152,7 +160,7 @@ export function DefGrid({ rows }: { rows: { term: string; def: ReactNode }[] }) 
   return (
     <dl className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface/40">
       {rows.map((r, i) => (
-        <div key={i} className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-[180px_1fr] sm:gap-6 sm:p-5">
+        <div key={i} className="grid break-inside-avoid grid-cols-1 gap-1 p-4 sm:grid-cols-[180px_1fr] sm:gap-6 sm:p-5">
           <dt className="font-medium text-fg">{r.term}</dt>
           <dd className="text-[0.95rem] leading-relaxed text-fg-muted">{r.def}</dd>
         </div>

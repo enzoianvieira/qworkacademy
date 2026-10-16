@@ -2,18 +2,54 @@ import type { Metadata } from "next";
 import { PageHero, Section, Steps, Callout, CheckList, DefGrid, Pill } from "@/components/ui";
 import { GRUPOS, SUPPORT } from "@/lib/content";
 import { FAQ } from "@/components/faq";
+import { Logo } from "@/components/logo";
+import { ExportPdfButton } from "@/components/export-pdf-button";
 
 export const metadata: Metadata = { title: "Manual do Funcionário · QWork Academy" };
+
+const loginLink = (
+  <a href={SUPPORT.loginUrl} target="_blank" rel="noopener noreferrer">
+    <Pill>{SUPPORT.loginUrl}</Pill>
+  </a>
+);
 
 export default function FuncionarioPage() {
   return (
     <article>
+      {/* Paper-only letterhead for the exported PDF. */}
+      <div className="mb-10 hidden items-center justify-between border-b border-line pb-5 print:flex">
+        <span className="text-[17pt]">
+          <Logo />
+        </span>
+        <span className="kicker">Guia do colaborador</span>
+      </div>
+
       <PageHero
         kicker="Manual do Funcionário"
         audience="Para colaboradores"
         title="Responda sua avaliação psicossocial sem complicação"
         lead="Um guia direto para acessar o sistema, responder as 37 questões e acompanhar seu comprovante. Leva de 15 a 20 minutos."
+        actions={<ExportPdfButton fileName="Manual do Funcionário - QWork" />}
       />
+
+      {/* Paper-only quick reference: what the employee needs before anything else. */}
+      <aside className="mt-8 hidden break-inside-avoid rounded-2xl border border-line bg-surface/50 p-6 print:block">
+        <p className="kicker">Acesso rápido</p>
+        <dl className="mt-4 grid grid-cols-[150px_1fr] gap-x-6 gap-y-2.5 text-[0.95rem]">
+          <dt className="font-medium text-fg">Link</dt>
+          <dd className="text-fg-muted">{loginLink}</dd>
+          <dt className="font-medium text-fg">Login</dt>
+          <dd className="text-fg-muted">Seu CPF, apenas números</dd>
+          <dt className="font-medium text-fg">Data de nascimento</dt>
+          <dd className="text-fg-muted">
+            Formato <Pill>ddmmaaaa</Pill>, ex.: <Pill>15031990</Pill>
+          </dd>
+          <dt className="font-medium text-fg">Senha</dt>
+          <dd className="text-fg-muted">Deixe em branco</dd>
+          <dt className="font-medium text-fg">Tempo</dt>
+          <dd className="text-fg-muted">15 a 20 minutos, salvamento automático</dd>
+        </dl>
+      </aside>
 
       <Section id="sobre" eyebrow="Contexto" title="O que é a avaliação psicossocial">
         <p className="text-[1.02rem] leading-relaxed text-fg-muted">
@@ -35,7 +71,7 @@ export default function FuncionarioPage() {
       <Section id="acesso" eyebrow="Passo a passo" title="Primeiro acesso e login">
         <Steps
           items={[
-            { title: "Acesse a página de login", body: <>Use o link enviado pelo RH: <Pill>{SUPPORT.loginUrl}</Pill></> },
+            { title: "Acesse a página de login", body: <>Use o link enviado pelo RH: {loginLink}</> },
             { title: "Digite seu CPF", body: "Apenas números, sem pontos ou traços." },
             { title: "Digite sua data de nascimento", body: <>No formato <Pill>ddmmaaaa</Pill>. Ex.: 15 de março de 1990 → <Pill>15031990</Pill>.</> },
             { title: "Deixe o campo Senha em branco", body: "Funcionários não usam senha." },
@@ -94,7 +130,7 @@ export default function FuncionarioPage() {
       <Section id="grupos" eyebrow="Referência" title="O que significam os grupos G1–G10">
         <div className="grid gap-3 sm:grid-cols-2">
           {GRUPOS.map((g) => (
-            <div key={g.g} className="rounded-xl border border-line bg-surface/40 p-4">
+            <div key={g.g} className="break-inside-avoid rounded-xl border border-line bg-surface/40 p-4">
               <div className="flex items-baseline gap-2">
                 <span className="font-mono text-[0.78rem] font-semibold text-lime">{g.g}</span>
                 <h4 className="text-[0.94rem] font-medium text-fg">{g.nome}</h4>
@@ -125,7 +161,7 @@ export default function FuncionarioPage() {
             { t: "Durante", items: ["Leia cada questão com atenção", "Responda com sinceridade", "Confie na primeira impressão"] },
             { t: "Lembre-se", items: ["Não há certo ou errado", "O objetivo é melhorar o ambiente", "Sua opinião é confidencial"] },
           ].map((b) => (
-            <div key={b.t} className="rounded-2xl border border-line bg-surface/40 p-5">
+            <div key={b.t} className="break-inside-avoid rounded-2xl border border-line bg-surface/40 p-5">
               <h4 className="text-[0.92rem] font-semibold text-fg">{b.t}</h4>
               <ul className="mt-3 space-y-2 text-[0.88rem] text-fg-muted">
                 {b.items.map((i) => (
