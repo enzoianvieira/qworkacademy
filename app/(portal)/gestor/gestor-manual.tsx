@@ -40,7 +40,7 @@ const PROFILES: Record<Profile, ProfileConfig> = {
     importWhere: "dentro do dashboard da empresa cliente",
     pendWhere: "dentro do dashboard de cada empresa cliente",
     payNote: "O pagamento é gerado por empresa cliente, e cada uma recebe seu próprio link de cobrança, independente das outras.",
-    videoSrc: "/videos/qwork-clinica.mp4",
+    videoSrc: "https://lbitaf4jbntrag8h.public.blob.vercel-storage.com/videos/qwork-clinica-Yv7wjk3QGY9bio2FPzIGpaVGHdTmF8.mp4",
     videoPoster: "/videos/qwork-clinica-poster.jpg",
     videoVtt: "/videos/qwork-clinica.vtt",
   },
@@ -55,7 +55,7 @@ const PROFILES: Record<Profile, ProfileConfig> = {
     importWhere: 'em "Funcionários Ativos" no menu lateral',
     pendWhere: 'no menu lateral, com badge de contagem',
     payNote: "O pagamento é gerado diretamente para a sua empresa após a solicitação.",
-    videoSrc: "/videos/qwork-entidade.mp4",
+    videoSrc: "https://lbitaf4jbntrag8h.public.blob.vercel-storage.com/videos/qwork-entidade-pcHBpW9BmrT68Qx7M6Tz71v9uiJxpX.mp4",
     videoPoster: "/videos/qwork-entidade-poster.jpg",
   },
 };
