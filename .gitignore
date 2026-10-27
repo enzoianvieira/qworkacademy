@@ -31,3 +31,9 @@ next-env.d.ts
 # editor
 .vscode/
 .idea/
+
+# media — videos are large binaries hosted outside git; voice/dub work files stay local
+*.mp4
+*.srt
+/amostras_voz/
+/roteiro_dublagem.txt

@@ -12,22 +12,23 @@ type Profile = "clinica" | "empresa";
 
 const STORAGE_KEY = "qw_gestor_profile";
 
-const PROFILES: Record<
-  Profile,
-  {
-    label: string;
-    emoji: string;
-    path: string;
-    who: string;
-    scope: string;
-    tagline: string;
-    flow: string[];
-    importWhere: string;
-    pendWhere: string;
-    payNote: string;
-    videoId: string;
-  }
-> = {
+interface ProfileConfig {
+  label: string;
+  emoji: string;
+  path: string;
+  who: string;
+  scope: string;
+  tagline: string;
+  flow: string[];
+  importWhere: string;
+  pendWhere: string;
+  payNote: string;
+  videoSrc: string;
+  videoPoster: string;
+  videoVtt?: string;
+}
+
+const PROFILES: Record<Profile, ProfileConfig> = {
   clinica: {
     label: "Clínica Ocupacional",
     emoji: "🏥",
@@ -39,7 +40,9 @@ const PROFILES: Record<
     importWhere: "dentro do dashboard da empresa cliente",
     pendWhere: "dentro do dashboard de cada empresa cliente",
     payNote: "O pagamento é gerado por empresa cliente, e cada uma recebe seu próprio link de cobrança, independente das outras.",
-    videoId: "J6GTvhA_iWM",
+    videoSrc: "/videos/qwork-clinica.mp4",
+    videoPoster: "/videos/qwork-clinica-poster.jpg",
+    videoVtt: "/videos/qwork-clinica.vtt",
   },
   empresa: {
     label: "Empresa",
@@ -52,7 +55,8 @@ const PROFILES: Record<
     importWhere: 'em "Funcionários Ativos" no menu lateral',
     pendWhere: 'no menu lateral, com badge de contagem',
     payNote: "O pagamento é gerado diretamente para a sua empresa após a solicitação.",
-    videoId: "N8HtdRNpj_w",
+    videoSrc: "/videos/qwork-entidade.mp4",
+    videoPoster: "/videos/qwork-entidade-poster.jpg",
   },
 };
 
@@ -201,17 +205,29 @@ function Manual({ profile, onReset }: { profile: Profile; onReset: () => void })
           Assista ao passo a passo em vídeo para o seu perfil antes de seguir o manual
           escrito abaixo.
         </p>
+
         <div className="overflow-hidden rounded-2xl border border-line bg-ink-2 shadow-2xl shadow-black/40">
-          <div className="relative aspect-video">
-            <iframe
-              key={p.videoId}
-              src={`https://www.youtube-nocookie.com/embed/${p.videoId}?rel=0`}
-              title={`Tour QWork: ${p.label}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
-            />
+          <div className="relative aspect-video bg-black">
+            <video
+              key={p.videoSrc}
+              controls
+              playsInline
+              preload="metadata"
+              poster={p.videoPoster}
+              className="h-full w-full object-contain"
+            >
+              <source src={p.videoSrc} type="video/mp4" />
+              {p.videoVtt && (
+                <track
+                  label="Português"
+                  kind="subtitles"
+                  srcLang="pt-BR"
+                  src={p.videoVtt}
+                  default
+                />
+              )}
+              Seu navegador não suporta a tag de vídeo HTML5.
+            </video>
           </div>
         </div>
       </Section>
